@@ -1,0 +1,9 @@
+[submodule "server/projects/filetree"]
+	path = server/projects/filetree
+	url = https://dalehenrich@github.com/dalehenrich/filetree.git
+[submodule "server/projects/amber-server"]
+	path = server/projects/amber-server
+	url = https://dalehenrich@github.com/dalehenrich/amber-server.git
+[submodule "server/projects/Cypress"]
+	path = server/projects/Cypress
+	url = https://dalehenrich@github.com/CampSmalltalk/Cypress.git

@@ -2,8 +2,9 @@
 
 # path
 ROOT=`dirname $0`
-BASE="/Users/dhenrich/Pharo/CogVM.app/Contents/MacOS"
+VM="/Users/dhenrich/Pharo/CogVM.app/Contents/MacOS/CogVM"
+VM="/export/foos1/users/dhenrich/pharo/cog/coglinux/bin/squeak"
 
 # execute
-$BASE/CogVM \
+$VM \
 "$ROOT/../server/Pharo-1.4.image"
