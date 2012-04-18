@@ -7,3 +7,6 @@
 [submodule "server/projects/Cypress"]
 	path = server/projects/Cypress
 	url = https://dalehenrich@github.com/CampSmalltalk/Cypress.git
+[submodule "server/projects/amber"]
+	path = server/projects/amber
+	url = https://dalehenrich@github.com/dalehenrich/amber.git

@@ -1,9 +1,9 @@
 "Bootstrap FileTree"
 Gofer new
-      url: 'http://ss3.gemstone.com/ss/FileTree';
-      package: 'ConfigurationOfFileTree';
+      repository: (MCDirectoryRepository new directory:
+                    (FileDirectory default directoryNamed: 'monticello/'));
+      package: 'MonticelloFileTree-Core';
       load.
-    ((Smalltalk at: #ConfigurationOfFileTree) project version: '1.0') load. 
 !
 "Install latest FileTree"
 Gofer new
