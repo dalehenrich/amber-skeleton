@@ -1,5 +1,7 @@
 #Amber Project
 
+**WARNING:** still a work in progress ...
+
 Skeleton for Amber projects. The **server** directory is
 intended to house a Pharo image. There's an install script that takes a
 standard Pharo image and turns it into an Amber file server.
