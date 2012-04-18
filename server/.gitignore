@@ -1,0 +1,6 @@
+*.image
+*.changes
+package-cache
+PharoDebug.log
+PharoV10.sources
+
