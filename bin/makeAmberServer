@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# image name is relative to `../server/pharo` directory
+# script path is relative to `../server/pharo` directory
+
+ROOT=`dirname $0`
+$ROOT/launchServer Pharo.image # ./st/installAmberServer.st
