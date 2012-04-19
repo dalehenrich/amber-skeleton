@@ -4,6 +4,6 @@ AmberServer singleton amberPath: 'projects/amber'.
 AmberServer singleton port: 4003.
 !
 "refresh Amber GUI"
-AmberServerControl startUp: true.
+AmberOneClick prepareImage.
 !
 
