@@ -1,9 +1,9 @@
 "Change these values as needed"
-AmberServer singleton stop.
+AmberServer singleton stop. "necessary if you are changing the port number"
 AmberServer singleton amberPath: 'projects/amber'.
-AmberServer singleton port: 4002.
+AmberServer singleton port: 4003.
 !
 "refresh Amber GUI"
-AmberOneClick prepareImage
+AmberServerControl startUp: true.
 !
 
