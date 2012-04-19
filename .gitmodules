@@ -1,3 +1,12 @@
 [submodule "server/projects/amber"]
 	path = server/projects/amber
 	url = https://dalehenrich@github.com/dalehenrich/amber.git
+[submodule "server/pharo/projects/filetree"]
+	path = server/pharo/projects/filetree
+	url = https://dalehenrich@github.com/dalehenrich/filetree.git
+[submodule "server/pharo/projects/amber-server"]
+	path = server/pharo/projects/amber-server
+	url = https://dalehenrich@github.com/dalehenrich/amber-server.git
+[submodule "server/pharo/projects/Cypress"]
+	path = server/pharo/projects/Cypress
+	url = https://dalehenrich@github.com/CampSmalltalk/Cypress.git
