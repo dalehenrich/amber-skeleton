@@ -27,6 +27,12 @@ Gofer new
         package: 'Cypress-AmberFileServer';
         load.
 !
+"set up the standard amberPath and port"
+AmberServer singleton amberPath: 'projects/amber'.
+AmberServer singleton port: 4001.
+!
 "initialize Amber server"
-AmberOneClick prepareImage.
+AmberOneClick 
+  pngPath: 'images/amber.png';
+  prepareImage
 !

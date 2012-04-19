@@ -7,4 +7,4 @@ VM="/export/foos1/users/dhenrich/pharo/cog/coglinux/bin/squeak"
 
 # execute
 $VM \
-"$ROOT/../server/Pharo-1.4.image"
+"$ROOT/../server/PharoCore-1.3.image" $1
