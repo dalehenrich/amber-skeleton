@@ -29,7 +29,7 @@ Gofer new
 !
 "set up the standard amberPath and port"
 AmberServer singleton amberPath: '../..'.
-AmberServer singleton port: 4001.
+AmberServer singleton port: 4002.
 !
 "initialize Amber server"
 AmberOneClick 
