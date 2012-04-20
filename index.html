@@ -5,10 +5,20 @@
   <body>
     <script type='text/javascript'> loadAmber({
         packages: [
-        ],
+          'AmberProjectImporter.js'
+          ],
+        packageHome: 'server/projects/amber-cypress/lib/',
         ready: function() {
           $(function() {
             smalltalk.Browser._open();
+            smalltalk.AmberProjectImporter._importSTPackages_prefix_(
+              [ 
+                'Cypress-Definitions',
+                'Cypress-Structure',
+                'Cypress-Mocks',
+                'Cypress-Tests'
+              ],
+              'server/projects/amber-cypress/st/');
           });
         }}) </script>
   </body> 

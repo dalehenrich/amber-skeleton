@@ -10,3 +10,6 @@
 [submodule "server/pharo/projects/Cypress"]
 	path = server/pharo/projects/Cypress
 	url = https://dalehenrich@github.com/CampSmalltalk/Cypress.git
+[submodule "server/projects/amber-cypress"]
+	path = server/projects/amber-cypress
+	url = https://dalehenrich@github.com/CampSmalltalk/amber-cypress.git
