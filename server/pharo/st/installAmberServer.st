@@ -36,3 +36,8 @@ AmberOneClick
   pngPath: 'images/amber.png';
   prepareImage
 !
+"save image as amberServer"
+(Smalltalk image)
+  saveAs: 'amberServer.image';
+  snapshot: true andQuit: true.
+
