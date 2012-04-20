@@ -10,6 +10,17 @@ At the moment, Pharo1.4 hits an emergency evaluator ... I haven't characterized 
 Now would be a good time to bring up the image and set the window size
 to your preference and then save the image. 
 
+### Initialize submodules
+
+Before building the Amber server image, you need to make sure that the
+`git submodules` are initialized:
+
+
+```shell
+git submodule init
+git submodule update
+```
+ 
 ###Build Amber server image
 
 Execute the `../../bin/makeAmberServer &` script to install the code necessary
