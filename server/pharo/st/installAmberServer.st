@@ -38,6 +38,6 @@ AmberOneClick
 !
 "save image as amberServer"
 (Smalltalk image)
-  saveAs: 'amberServer.image';
+  saveAs: 'AmberServer.image';
   snapshot: true andQuit: true.
 

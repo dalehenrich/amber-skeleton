@@ -3,4 +3,4 @@
 # path (arg $1) is relative to `../server/pharo` directory
 
 ROOT=`dirname $0`
-$ROOT/launchServer amberServer.image $1
+$ROOT/launchServer AmberServer.image $1

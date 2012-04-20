@@ -1,7 +1,10 @@
 #!/bin/sh
-
+#
 # image name is relative to `../server/pharo` directory
 # script path is relative to `../server/pharo` directory
+#
+# Using PharoCore1.3 for now ... Pharo1.4 has some issues at the moment
+#
 
 ROOT=`dirname $0`
-$ROOT/launchServer Pharo.image ./st/installAmberServer.st
+$ROOT/launchServer PharoCore-1.3.image ./st/installAmberServer.st
