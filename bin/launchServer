@@ -1,5 +1,7 @@
 #!/bin/sh
-
+#
+# this is the worker script for launching the vm
+#
 # image name (arg #1) is relative to `../server/pharo` directory
 # path (arg $2) is relative to `../server/pharo` directory
 

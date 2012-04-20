@@ -1,5 +1,7 @@
 #!/bin/sh
-
+#
+# This script launches the pharo-based Amber File Server
+#
 # path (arg $1) is relative to `../server/pharo` directory
 
 ROOT=`dirname $0`
