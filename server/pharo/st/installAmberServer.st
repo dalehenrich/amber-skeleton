@@ -37,7 +37,8 @@ AmberOneClick
   prepareImage
 !
 "save image as amberServer"
-(Smalltalk image)
-  saveAs: 'AmberServer.image';
-  snapshot: true andQuit: true.
+SmalltalkImage current saveAs: 'AmberServer.image'.
+"...and quite"
+WorldState addDeferredUIMessage: [
+  SmalltalkImage current snapshot: true andQuit: true ].
 
