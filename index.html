@@ -10,7 +10,7 @@
         packageHome: 'server/projects/importer/',
         ready: function() {
           $(function() {
-            smalltalk.AmberProjectBrowser._open();
+            smalltalk.Browser._open();
             smalltalk.AmberProjectExporter._registerPackage_type_prefix_(
                'AmberProject-Core',
                'js',
@@ -29,7 +29,11 @@
                 'AmberProject-CypressExporter'
               ],
               'server/projects/importer/');
-
+            smalltalk.AmberProjectExporter._registerPackage_type_prefix_(
+               'Cypress-Definitions',
+               'cypress',
+               'server/projects/amber-cypress/'
+              );
           });
         }}) </script>
   </body> 

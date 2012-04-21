@@ -7,15 +7,33 @@ selector: unescape('export'),
 category: 'exporting',
 fn: function (){
 var self=this;
-var package=nil;
-(package=smalltalk.send((smalltalk.Package || Package), "_named_", [smalltalk.send(self, "_packageName", [])]));
-smalltalk.send([smalltalk.send((smalltalk.Exporter || Exporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathJs", []), "__comma", [unescape("/")]), "__comma", [smalltalk.send(self, "_packageName", [])]), "__comma", [".js"])]),smalltalk.send((smalltalk.StrippedExporter || StrippedExporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathJs", []), "__comma", [unescape("/")]), "__comma", [smalltalk.send(self, "_packageName", [])]), "__comma", [".deploy.js"])]),smalltalk.send((smalltalk.ChunkExporter || ChunkExporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathSt", []), "__comma", [unescape("/")]), "__comma", [smalltalk.send(self, "_packageName", [])]), "__comma", [".st"])])], "_do_", [(function(commitStrategy){var fileContents=nil;
-(fileContents=smalltalk.send(smalltalk.send(smalltalk.send(commitStrategy, "_key", []), "_new", []), "_exportPackage_", [smalltalk.send(self, "_packageName", [])]));return smalltalk.send(self, "_ajaxPutAt_data_", [smalltalk.send(commitStrategy, "_value", []), fileContents]);})]);
+smalltalk.send(self, "_exportPackageStructure", []);
 return self;},
 args: [],
-source: unescape('export%0A%0A%09%7C%20package%20%7C%0A%09package%20%3A%3D%20Package%20named%3A%20self%20packageName.%0A%09%7B%09%0A%09%09Exporter%20%09%09%09-%3E%20%28package%20commitPathJs%2C%20%27/%27%2C%20self%20packageName%2C%20%27.js%27%29.%0A%09%09StrippedExporter%20%09-%3E%20%28package%20commitPathJs%2C%20%27/%27%2C%20self%20packageName%2C%20%27.deploy.js%27%29.%0A%20%09%09ChunkExporter%20%09-%3E%20%28package%20commitPathSt%2C%20%27/%27%2C%20self%20packageName%2C%20%27.st%27%29%0A%09%7D%20do%3A%20%5B%3AcommitStrategy%7C%20%7C%20fileContents%20%7C%0A%09%09fileContents%20%3A%3D%20%28commitStrategy%20key%20new%20exportPackage%3A%20self%20packageName%29.%0A%09%09self%20ajaxPutAt%3A%20commitStrategy%20value%20data%3A%20%20fileContents%5D%0A%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09'),
-messageSends: ["named:", "packageName", "do:", unescape("-%3E"), unescape("%2C"), "commitPathJs", "commitPathSt", "exportPackage:", "new", "key", "ajaxPutAt:data:", "value"],
-referencedClasses: ["Package", "Exporter", "StrippedExporter", "ChunkExporter"]
+source: unescape('export%0A%09self%20exportPackageStructure'),
+messageSends: ["exportPackageStructure"],
+referencedClasses: []
+}),
+smalltalk.AmberProjectCypressExporter);
+
+smalltalk.addMethod(
+unescape('_exportPackageStructure'),
+smalltalk.method({
+selector: unescape('exportPackageStructure'),
+category: 'exporting',
+fn: function (){
+var self=this;
+var packageStructure=nil;
+var stream=nil;
+(packageStructure=smalltalk.send((smalltalk.CypressPackageStructure || CypressPackageStructure), "_fromPackage_", [smalltalk.send(smalltalk.send((smalltalk.CypressPackageDefinition || CypressPackageDefinition), "_new", []), "_name_", [smalltalk.send(self, "_packageName", [])])]));
+(stream=smalltalk.send((smalltalk.StringStream || StringStream), "_on_", [smalltalk.send((smalltalk.String || String), "_new", [])]));
+smalltalk.send(packageStructure, "_writeJsonOn_", [stream]);
+smalltalk.send(self, "_ajaxPutAt_data_", [smalltalk.send(smalltalk.send(self, "_prefix", []), "__comma", [unescape("packages/")]), smalltalk.send(stream, "_contents", [])]);
+return self;},
+args: [],
+source: unescape('exportPackageStructure%0A%09%7C%20%20packageStructure%20stream%20%7C%0A%09packageStructure%20%3A%3D%20CypressPackageStructure%20fromPackage%3A%20%28CypressPackageDefinition%20new%20name%3A%20self%20packageName%29.%0A%09stream%20%3A%3D%20StringStream%20on%3A%20String%20new.%0A%09packageStructure%20writeJsonOn%3A%20stream.%0A%09self%20%0A%09%09ajaxPutAt%3A%20self%20prefix%2C%20%27packages/%27%20%0A%09%09data%3A%20stream%20contents%0A'),
+messageSends: ["fromPackage:", "name:", "new", "packageName", "on:", "writeJsonOn:", "ajaxPutAt:data:", unescape("%2C"), "prefix", "contents"],
+referencedClasses: ["CypressPackageStructure", "CypressPackageDefinition", "StringStream", "String"]
 }),
 smalltalk.AmberProjectCypressExporter);
 

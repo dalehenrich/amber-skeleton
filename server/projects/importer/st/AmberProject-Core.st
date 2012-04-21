@@ -1,14 +1,4 @@
 Smalltalk current createPackage: 'AmberProject-Core' properties: #{}!
-Browser subclass: #AmberProjectBrowser
-	instanceVariableNames: ''
-	package: 'AmberProject-Core'!
-
-!AmberProjectBrowser methodsFor: 'actions'!
-
-commitPackage
-	selectedPackage ifNotNil: [ (AmberProjectExporter exporterForPackage: selectedPackage) export ]
-! !
-
 Object subclass: #AmberProjectExporter
 	instanceVariableNames: 'packageName prefix'
 	package: 'AmberProject-Core'!
@@ -259,5 +249,27 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 					ifTrue: [ loadBlock value: next ]]].
 	packageNameList size >= 1 
 		ifTrue: [ loadBlock value: 1 ]
+! !
+
+!Browser methodsFor: '*AmberProject-Core'!
+
+commitPackage
+
+	true ifTrue: [ ^self commitPackageAmberProject ].
+	selectedPackage ifNotNil: [ |package|
+               						 package := Package named: selectedPackage.
+               						 {	Exporter 			-> (package commitPathJs, '/', selectedPackage, '.js').
+                        					StrippedExporter 	-> (package commitPathJs, '/', selectedPackage, '.deploy.js').
+                       						 ChunkExporter 		-> (package commitPathSt, '/', selectedPackage, '.st') 			} 
+                 
+                						do: [:commitStrategy| |fileContents|
+                                                                     	fileContents := (commitStrategy key new exportPackage: selectedPackage).
+                                                                     	self ajaxPutAt: commitStrategy value data:  fileContents]
+         						]
+!
+
+commitPackageAmberProject
+
+	selectedPackage ifNotNil: [ (AmberProjectExporter exporterForPackage: selectedPackage) export ]
 ! !
 

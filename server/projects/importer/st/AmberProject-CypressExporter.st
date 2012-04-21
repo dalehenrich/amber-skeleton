@@ -6,16 +6,17 @@ AmberProjectExporter subclass: #AmberProjectCypressExporter
 !AmberProjectCypressExporter methodsFor: 'exporting'!
 
 export
+	self exportPackageStructure
+!
 
-	| package |
-	package := Package named: self packageName.
-	{	
-		Exporter 			-> (package commitPathJs, '/', self packageName, '.js').
-		StrippedExporter 	-> (package commitPathJs, '/', self packageName, '.deploy.js').
- 		ChunkExporter 	-> (package commitPathSt, '/', self packageName, '.st')
-	} do: [:commitStrategy| | fileContents |
-		fileContents := (commitStrategy key new exportPackage: self packageName).
-		self ajaxPutAt: commitStrategy value data:  fileContents]
+exportPackageStructure
+	|  packageStructure stream |
+	packageStructure := CypressPackageStructure fromPackage: (CypressPackageDefinition new name: self packageName).
+	stream := StringStream on: String new.
+	packageStructure writeJsonOn: stream.
+	self 
+		ajaxPutAt: self prefix, 'packages/' 
+		data: stream contents
 ! !
 
 !AmberProjectCypressExporter class methodsFor: 'initialization'!

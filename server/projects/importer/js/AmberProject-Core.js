@@ -1,23 +1,4 @@
 smalltalk.addPackage('AmberProject-Core', {});
-smalltalk.addClass('AmberProjectBrowser', smalltalk.Browser, [], 'AmberProject-Core');
-smalltalk.addMethod(
-unescape('_commitPackage'),
-smalltalk.method({
-selector: unescape('commitPackage'),
-category: 'actions',
-fn: function (){
-var self=this;
-(($receiver = self['@selectedPackage']) != nil && $receiver != undefined) ? (function(){return smalltalk.send(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporterForPackage_", [self['@selectedPackage']]), "_export", []);})() : nil;
-return self;},
-args: [],
-source: unescape('commitPackage%0A%09selectedPackage%20ifNotNil%3A%20%5B%20%28AmberProjectExporter%20exporterForPackage%3A%20selectedPackage%29%20export%20%5D'),
-messageSends: ["ifNotNil:", "export", "exporterForPackage:"],
-referencedClasses: ["AmberProjectExporter"]
-}),
-smalltalk.AmberProjectBrowser);
-
-
-
 smalltalk.addClass('AmberProjectExporter', smalltalk.Object, ['packageName', 'prefix'], 'AmberProject-Core');
 smalltalk.addMethod(
 unescape('_ajaxPutAt_data_'),
@@ -428,4 +409,40 @@ referencedClasses: []
 }),
 smalltalk.AmberProjectImporter.klass);
 
+
+smalltalk.addMethod(
+unescape('_commitPackage'),
+smalltalk.method({
+selector: unescape('commitPackage'),
+category: '*AmberProject-Core',
+fn: function (){
+var self=this;
+try{((($receiver = true).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (function(){throw({name: 'stReturn', selector: '_commitPackage', fn: function(){return smalltalk.send(self, "_commitPackageAmberProject", [])}})})();})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (function(){throw({name: 'stReturn', selector: '_commitPackage', fn: function(){return smalltalk.send(self, "_commitPackageAmberProject", [])}})})();})]));
+(($receiver = self['@selectedPackage']) != nil && $receiver != undefined) ? (function(){var package=nil;
+(package=smalltalk.send((smalltalk.Package || Package), "_named_", [self['@selectedPackage']]));return smalltalk.send([smalltalk.send((smalltalk.Exporter || Exporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathJs", []), "__comma", [unescape("/")]), "__comma", [self['@selectedPackage']]), "__comma", [".js"])]),smalltalk.send((smalltalk.StrippedExporter || StrippedExporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathJs", []), "__comma", [unescape("/")]), "__comma", [self['@selectedPackage']]), "__comma", [".deploy.js"])]),smalltalk.send((smalltalk.ChunkExporter || ChunkExporter), "__minus_gt", [smalltalk.send(smalltalk.send(smalltalk.send(smalltalk.send(package, "_commitPathSt", []), "__comma", [unescape("/")]), "__comma", [self['@selectedPackage']]), "__comma", [".st"])])], "_do_", [(function(commitStrategy){var fileContents=nil;
+(fileContents=smalltalk.send(smalltalk.send(smalltalk.send(commitStrategy, "_key", []), "_new", []), "_exportPackage_", [self['@selectedPackage']]));return smalltalk.send(self, "_ajaxPutAt_data_", [smalltalk.send(commitStrategy, "_value", []), fileContents]);})]);})() : nil;
+return self;
+} catch(e) {if(e.name === 'stReturn' && e.selector === '_commitPackage'){return e.fn()} throw(e)}},
+args: [],
+source: unescape('commitPackage%0A%0A%09true%20ifTrue%3A%20%5B%20%5Eself%20commitPackageAmberProject%20%5D.%0A%09selectedPackage%20ifNotNil%3A%20%5B%20%7Cpackage%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09%20package%20%3A%3D%20Package%20named%3A%20selectedPackage.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09%20%7B%09Exporter%20%09%09%09-%3E%20%28package%20commitPathJs%2C%20%27/%27%2C%20selectedPackage%2C%20%27.js%27%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09%09%09%09%09StrippedExporter%20%09-%3E%20%28package%20commitPathJs%2C%20%27/%27%2C%20selectedPackage%2C%20%27.deploy.js%27%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09%20ChunkExporter%20%09%09-%3E%20%28package%20commitPathSt%2C%20%27/%27%2C%20selectedPackage%2C%20%27.st%27%29%20%09%09%09%7D%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09do%3A%20%5B%3AcommitStrategy%7C%20%7CfileContents%7C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09fileContents%20%3A%3D%20%28commitStrategy%20key%20new%20exportPackage%3A%20selectedPackage%29.%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%09self%20ajaxPutAt%3A%20commitStrategy%20value%20data%3A%20%20fileContents%5D%0A%20%20%20%20%20%20%20%20%20%09%09%09%09%09%09%5D'),
+messageSends: ["ifTrue:", "commitPackageAmberProject", "ifNotNil:", "named:", "do:", unescape("-%3E"), unescape("%2C"), "commitPathJs", "commitPathSt", "exportPackage:", "new", "key", "ajaxPutAt:data:", "value"],
+referencedClasses: ["Package", "Exporter", "StrippedExporter", "ChunkExporter"]
+}),
+smalltalk.Browser);
+
+smalltalk.addMethod(
+unescape('_commitPackageAmberProject'),
+smalltalk.method({
+selector: unescape('commitPackageAmberProject'),
+category: '*AmberProject-Core',
+fn: function (){
+var self=this;
+(($receiver = self['@selectedPackage']) != nil && $receiver != undefined) ? (function(){return smalltalk.send(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporterForPackage_", [self['@selectedPackage']]), "_export", []);})() : nil;
+return self;},
+args: [],
+source: unescape('commitPackageAmberProject%0A%0A%09selectedPackage%20ifNotNil%3A%20%5B%20%28AmberProjectExporter%20exporterForPackage%3A%20selectedPackage%29%20export%20%5D'),
+messageSends: ["ifNotNil:", "export", "exporterForPackage:"],
+referencedClasses: ["AmberProjectExporter"]
+}),
+smalltalk.Browser);
 
