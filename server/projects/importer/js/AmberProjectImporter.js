@@ -23,53 +23,53 @@ smalltalk.AmberProjectImporter.comment=unescape('%23%23%20AmberProjectImporter%0
 
 smalltalk.AmberProjectImporter.klass.iVarNames = ['packageRegistry'];
 smalltalk.addMethod(
-unescape('_get_url_onComplete_'),
+unescape('_get_url_onSuccess_'),
 smalltalk.method({
-selector: unescape('get%3Aurl%3AonComplete%3A'),
+selector: unescape('get%3Aurl%3AonSuccess%3A'),
 category: 'private',
-fn: function (type, ajaxUrl, completeBlock){
+fn: function (type, ajaxUrl, successBlock){
 var self=this;
-try{((($receiver = smalltalk.send(type, "__eq_eq", [smalltalk.symbolFor("st")])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onComplete_', fn: function(){return smalltalk.send(self, "_getSt_onComplete_", [ajaxUrl, completeBlock])}})})();})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onComplete_', fn: function(){return smalltalk.send(self, "_getSt_onComplete_", [ajaxUrl, completeBlock])}})})();})]));
-((($receiver = smalltalk.send(type, "__eq_eq", [smalltalk.symbolFor("js")])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onComplete_', fn: function(){return smalltalk.send(self, "_getJs_onComplete_", [ajaxUrl, completeBlock])}})})();})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onComplete_', fn: function(){return smalltalk.send(self, "_getJs_onComplete_", [ajaxUrl, completeBlock])}})})();})]));
+try{((($receiver = smalltalk.send(type, "__eq_eq", [smalltalk.symbolFor("st")])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onSuccess_', fn: function(){return smalltalk.send(self, "_getSt_onSuccess_", [ajaxUrl, successBlock])}})})();})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onSuccess_', fn: function(){return smalltalk.send(self, "_getSt_onSuccess_", [ajaxUrl, successBlock])}})})();})]));
+((($receiver = smalltalk.send(type, "__eq_eq", [smalltalk.symbolFor("js")])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onSuccess_', fn: function(){return smalltalk.send(self, "_getJs_onSuccess_", [ajaxUrl, successBlock])}})})();})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return (function(){throw({name: 'stReturn', selector: '_get_url_onSuccess_', fn: function(){return smalltalk.send(self, "_getJs_onSuccess_", [ajaxUrl, successBlock])}})})();})]));
 smalltalk.send(self, "_error_", [smalltalk.send("Unknown type: ", "__comma", [smalltalk.send(type, "_printString", [])])]);
 return self;
-} catch(e) {if(e.name === 'stReturn' && e.selector === '_get_url_onComplete_'){return e.fn()} throw(e)}},
-args: ["type", "ajaxUrl", "completeBlock"],
-source: unescape('get%3A%20type%20url%3A%20ajaxUrl%20onComplete%3A%20completeBlock%0A%09%0A%09type%20%3D%3D%20%23st%20ifTrue%3A%20%5B%20%5Eself%20%20getSt%3A%20ajaxUrl%20onComplete%3A%20completeBlock%20%5D.%0A%09type%20%3D%3D%20%23js%20ifTrue%3A%20%5B%20%5Eself%20%20getJs%3A%20ajaxUrl%20onComplete%3A%20completeBlock%20%5D.%0A%09self%20error%3A%20%27Unknown%20type%3A%20%27%2C%20type%20printString'),
-messageSends: ["ifTrue:", unescape("%3D%3D"), "getSt:onComplete:", "getJs:onComplete:", "error:", unescape("%2C"), "printString"],
+} catch(e) {if(e.name === 'stReturn' && e.selector === '_get_url_onSuccess_'){return e.fn()} throw(e)}},
+args: ["type", "ajaxUrl", "successBlock"],
+source: unescape('get%3A%20type%20url%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%09%0A%09type%20%3D%3D%20%23st%20ifTrue%3A%20%5B%20%5Eself%20%20getSt%3A%20ajaxUrl%20onSuccess%3A%20successBlock%20%5D.%0A%09type%20%3D%3D%20%23js%20ifTrue%3A%20%5B%20%5Eself%20%20getJs%3A%20ajaxUrl%20onSuccess%3A%20successBlock%20%5D.%0A%09self%20error%3A%20%27Unknown%20type%3A%20%27%2C%20type%20printString'),
+messageSends: ["ifTrue:", unescape("%3D%3D"), "getSt:onSuccess:", "getJs:onSuccess:", "error:", unescape("%2C"), "printString"],
 referencedClasses: []
 }),
 smalltalk.AmberProjectImporter.klass);
 
 smalltalk.addMethod(
-unescape('_getJs_onComplete_'),
+unescape('_getJs_onSuccess_'),
 smalltalk.method({
-selector: unescape('getJs%3AonComplete%3A'),
+selector: unescape('getJs%3AonSuccess%3A'),
 category: 'private',
-fn: function (ajaxUrl, completeBlock){
+fn: function (ajaxUrl, successBlock){
 var self=this;
-smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_getScript_onSuccess_", [ajaxUrl, completeBlock]);
+smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_getScript_onSuccess_", [ajaxUrl, successBlock]);
 return self;},
-args: ["ajaxUrl", "completeBlock"],
-source: unescape('getJs%3A%20ajaxUrl%20onComplete%3A%20completeBlock%0A%09jQuery%20%0A%09%09getScript%3A%20ajaxUrl%0A%09%09onSuccess%3A%20completeBlock'),
+args: ["ajaxUrl", "successBlock"],
+source: unescape('getJs%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09getScript%3A%20ajaxUrl%0A%09%09onSuccess%3A%20successBlock'),
 messageSends: ["getScript:onSuccess:"],
 referencedClasses: []
 }),
 smalltalk.AmberProjectImporter.klass);
 
 smalltalk.addMethod(
-unescape('_getSt_onComplete_'),
+unescape('_getSt_onSuccess_'),
 smalltalk.method({
-selector: unescape('getSt%3AonComplete%3A'),
+selector: unescape('getSt%3AonSuccess%3A'),
 category: 'private',
-fn: function (ajaxUrl, completeBlock){
+fn: function (ajaxUrl, successBlock){
 var self=this;
 smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_ajax_options_", [ajaxUrl, smalltalk.HashedCollection._fromPairs_([smalltalk.send("type", "__minus_gt", ["GET"]),smalltalk.send("complete", "__minus_gt", [(function(jqXHR, textStatus){return ((($receiver = smalltalk.send(smalltalk.send(jqXHR, "_readyState", []), "__eq", [(4)])).klass === smalltalk.Boolean) ? ($receiver ? (function(){var chunks=nil;
-smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(completeBlock, "_value", []);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){var chunks=nil;
-smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(completeBlock, "_value", []);})]));})])])]);
+smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){var chunks=nil;
+smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})]));})])])]);
 return self;},
-args: ["ajaxUrl", "completeBlock"],
-source: unescape('getSt%3A%20ajaxUrl%20onComplete%3A%20completeBlock%0A%09jQuery%20%0A%09%09ajax%3A%20ajaxUrl%0A%20%20%20%20%20%20%20%20%09options%3A%20%23%7B%0A%09%09%09%27type%27%20-%3E%20%27GET%27.%0A%20%20%20%20%09%09%09%27complete%27%20-%3E%20%5B%3AjqXHR%20%3AtextStatus%20%7C%20%0A%09%09%09jqXHR%20readyState%20%3D%204%20ifTrue%3A%20%5B%20%7C%20chunks%20%7C%0A%09%09%09%09Importer%20new%20import%3A%20jqXHR%20responseText%20readStream.%0A%09%09%09%09completeBlock%20value%20%20%5D%5D%0A%09%09%7D'),
+args: ["ajaxUrl", "successBlock"],
+source: unescape('getSt%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09ajax%3A%20ajaxUrl%0A%20%20%20%20%20%20%20%20%09options%3A%20%23%7B%0A%09%09%09%27type%27%20-%3E%20%27GET%27.%0A%20%20%20%20%09%09%09%27complete%27%20-%3E%20%5B%3AjqXHR%20%3AtextStatus%20%7C%20%0A%09%09%09jqXHR%20readyState%20%3D%204%20ifTrue%3A%20%5B%20%7C%20chunks%20%7C%0A%09%09%09%09Importer%20new%20import%3A%20jqXHR%20responseText%20readStream.%0A%09%09%09%09successBlock%20value%20%20%5D%5D%0A%09%09%7D'),
 messageSends: ["ajax:options:", unescape("-%3E"), "ifTrue:", unescape("%3D"), "readyState", "import:", "new", "readStream", "responseText", "value"],
 referencedClasses: ["Importer"]
 }),
@@ -85,11 +85,11 @@ var self=this;
 var loadBlock=nil;
 (loadBlock=(function(index){var packageName=nil;
 var next=nil;
-(packageName=smalltalk.send(packageNameList, "_at_", [index]));return smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send(self, "_registerPackage_at_", [packageName, prefix]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));return ((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));})]);}));
+(packageName=smalltalk.send(packageNameList, "_at_", [index]));return smalltalk.send(self, "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send(self, "_registerPackage_at_", [packageName, prefix]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));return ((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));})]);}));
 ((($receiver = ((($receiver = smalltalk.send(packageNameList, "_size", [])).klass === smalltalk.Number) ? $receiver >=(1) : smalltalk.send($receiver, "__gt_eq", [(1)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})]));
 return self;},
 args: ["type", "packageSubDir", "packageNameList", "extension", "prefix"],
-source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0A%09%09jQuery%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09self%20registerPackage%3A%20packageName%20at%3A%20prefix.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D%0A'),
+source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0A%09%09self%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09self%20registerPackage%3A%20packageName%20at%3A%20prefix.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D%0A'),
 messageSends: ["at:", "get:url:onSuccess:", unescape("%2C"), "init:", "registerPackage:at:", unescape("+"), "ifTrue:", unescape("%3C%3D"), "size", "value:", unescape("%3E%3D")],
 referencedClasses: ["Package"]
 }),

@@ -93,20 +93,22 @@ initialize
 
 !AmberProjectImporter class methodsFor: 'private'!
 
-get: type url: ajaxUrl onComplete: completeBlock
+get: type url: ajaxUrl onSuccess: successBlock
 	
-	type == #st ifTrue: [ ^self  getSt: ajaxUrl onComplete: completeBlock ].
-	type == #js ifTrue: [ ^self  getJs: ajaxUrl onComplete: completeBlock ].
+	type == #st ifTrue: [ ^self  getSt: ajaxUrl onSuccess: successBlock ].
+	type == #js ifTrue: [ ^self  getJs: ajaxUrl onSuccess: successBlock ].
 	self error: 'Unknown type: ', type printString
 !
 
-getJs: ajaxUrl onComplete: completeBlock
+getJs: ajaxUrl onSuccess: successBlock
+
 	jQuery 
 		getScript: ajaxUrl
-		onSuccess: completeBlock
+		onSuccess: successBlock
 !
 
-getSt: ajaxUrl onComplete: completeBlock
+getSt: ajaxUrl onSuccess: successBlock
+
 	jQuery 
 		ajax: ajaxUrl
         	options: #{
@@ -114,7 +116,7 @@ getSt: ajaxUrl onComplete: completeBlock
     			'complete' -> [:jqXHR :textStatus | 
 			jqXHR readyState = 4 ifTrue: [ | chunks |
 				Importer new import: jqXHR responseText readStream.
-				completeBlock value  ]]
+				successBlock value  ]]
 		}
 !
 
@@ -123,7 +125,7 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 	| loadBlock |
 	loadBlock := [:index | | packageName next |
 		packageName := packageNameList at: index.
-		jQuery 
+		self 
 			get: type
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
