@@ -50,7 +50,12 @@ importDeployJsPackages: packageNameList prefix: prefix
 		importDeployJsPackages: #('AmberProjectPage')
 		prefix:''"
 
-	self importJs: 'js/' packages: packageNameList extension: '.deploy.js' prefix: prefix
+	self 
+		import: #js 
+		subDir: 'js/' 
+		packages: packageNameList 
+		extension: '.deploy.js' 
+		prefix: prefix
 !
 
 importJsPackages: packageNameList prefix: prefix
@@ -58,7 +63,12 @@ importJsPackages: packageNameList prefix: prefix
 		importJsPackages: #('AmberProjectPage')
 		prefix:''"
 
-	self importJs: 'js/' packages: packageNameList extension: '.js' prefix: prefix
+	self 
+		import: #js 
+		subDir: 'js/' 
+		packages: packageNameList 
+		extension: '.js' 
+		prefix: prefix
 !
 
 importStPackages: packageNameList prefix: prefix
@@ -66,7 +76,12 @@ importStPackages: packageNameList prefix: prefix
 		importStPackages: #('AmberProjectPage')
 		prefix:''"
 
-	self importSt: 'st/' packages: packageNameList prefix: prefix
+	self 
+		import: #st 
+		subDir: 'st/' 
+		packages: packageNameList 
+		extension: '.st' 
+		prefix: prefix
 ! !
 
 !AmberProjectImporter class methodsFor: 'initialization'!
@@ -78,45 +93,45 @@ initialize
 
 !AmberProjectImporter class methodsFor: 'private'!
 
-get: ajaxUrl onComplete: completeBlock
+get: type url: ajaxUrl onComplete: completeBlock
+	
+	type == #st ifTrue: [ ^self  getSt: ajaxUrl onComplete: completeBlock ].
+	type == #js ifTrue: [ ^self  getJs: ajaxUrl onComplete: completeBlock ].
+	self error: 'Unknown type: ', type printString
+!
+
+getJs: ajaxUrl onComplete: completeBlock
+	jQuery 
+		getScript: ajaxUrl
+		onSuccess: completeBlock
+!
+
+getSt: ajaxUrl onComplete: completeBlock
 	jQuery 
 		ajax: ajaxUrl
         	options: #{
 			'type' -> 'GET'.
-    			'complete' -> [ :jqXHR :textStatus |  completeBlock value: jqXHR value: textStatus]
+    			'complete' -> [:jqXHR :textStatus | 
+			jqXHR readyState = 4 ifTrue: [ | chunks |
+				Importer new import: jqXHR responseText readStream.
+				completeBlock value  ]]
 		}
 !
 
-importJs: packageSubDir packages: packageNameList extension: extension prefix: prefix
+import: type subDir: packageSubDir packages: packageNameList extension: extension prefix: prefix
 
 	| loadBlock |
 	loadBlock := [:index | | packageName next |
 		packageName := packageNameList at: index.
 		jQuery 
-			getScript: (prefix, packageSubDir, packageName, extension) 
+			get: type
+			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
 				Package init: packageName.
 				self registerPackage: packageName at: prefix.
 				next := index + 1.
 				next <= packageNameList size
 					ifTrue: [ loadBlock value: next ]]].
-	packageNameList size >= 1 
-		ifTrue: [ loadBlock value: 1 ]
-!
-
-importSt: packageSubDir packages: packageNameList prefix: prefix
-
-	| loadBlock |
-	loadBlock := [:index | | packageName next |
-		packageName := packageNameList at: index.
-		self get: prefix, packageSubDir, packageName, '.st' onComplete: [:jqXHR :textStatus | 
-			jqXHR readyState = 4 ifTrue: [ | chunks |
-				Importer new import: jqXHR responseText readStream.
-				Package init: packageName.
-				self registerPackage: packageName at: prefix.
-				next := index + 1.
-				next <= packageNameList size
-					ifTrue: [ loadBlock value: next ]  ]]].
 	packageNameList size >= 1 
 		ifTrue: [ loadBlock value: 1 ]
 ! !
