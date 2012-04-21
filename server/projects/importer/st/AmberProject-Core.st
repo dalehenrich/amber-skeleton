@@ -6,9 +6,7 @@ Browser subclass: #AmberProjectBrowser
 !AmberProjectBrowser methodsFor: 'actions'!
 
 commitPackage
-	selectedPackage ifNotNil: [ | exporter |
-		exporter := AmberProjectImporter exporterForPackage: selectedPackage.
-	]
+	selectedPackage ifNotNil: [ (AmberProjectExporter exporterForPackage: selectedPackage) export ]
 ! !
 
 Object subclass: #AmberProjectExporter
@@ -62,7 +60,7 @@ ajaxPutAt: anURL data: aString
 								'error' -> [window alert: 'PUT request failed at:  ', anURL] }
 ! !
 
-AmberProjectExporter class instanceVariableNames: 'exporters'!
+AmberProjectExporter class instanceVariableNames: 'exporters packageRegistry'!
 
 !AmberProjectExporter class methodsFor: 'accessing'!
 
@@ -81,6 +79,38 @@ exporters
 resetExporters
 
 	exporters := nil
+! !
+
+!AmberProjectExporter class methodsFor: 'exporting'!
+
+exportPackageNamed: aPackageName
+	"AmberProjectExporter exportPackageNamed: 'AmberProject-Core'"
+
+	(self exporterForPackage: aPackageName) export
+! !
+
+!AmberProjectExporter class methodsFor: 'registry'!
+
+exporterForPackage: packageName
+
+	^self packageRegistry at: packageName ifAbsent: [(AmberProjectStandardExporter new) packageName: packageName; yourself]
+!
+
+packageRegistry
+	"AmberProjectExporter packageRegistry"
+
+	packageRegistry ifNil: [ packageRegistry := Dictionary new ].
+	^packageRegistry
+!
+
+registerPackage: packageName type: type prefix: prefix
+
+	self packageRegistry at: packageName put: ((self exporterFor: type asString) packageName: packageName; prefix: prefix; yourself)
+!
+
+resetRegistry
+
+	packageRegistry := nil
 ! !
 
 AmberProjectExporter subclass: #AmberProjectStandardExporter
@@ -185,13 +215,6 @@ importStPackages: packageNameList prefix: prefix
 		prefix: prefix
 ! !
 
-!AmberProjectImporter class methodsFor: 'initialization'!
-
-initialize
-
-	Transcript cr; show: 'I was initialized'
-! !
-
 !AmberProjectImporter class methodsFor: 'private'!
 
 get: type url: ajaxUrl onSuccess: successBlock
@@ -231,35 +254,11 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
 				Package init: packageName.
-				self registerPackage: packageName type: type prefix:prefix.
+				AmberProjectExporter registerPackage: packageName type: type prefix:prefix.
 				next := index + 1.
 				next <= packageNameList size
 					ifTrue: [ loadBlock value: next ]]].
 	packageNameList size >= 1 
 		ifTrue: [ loadBlock value: 1 ]
-! !
-
-!AmberProjectImporter class methodsFor: 'registry'!
-
-exporterForPackage: packageName
-
-	^self packageRegistry at: packageName ifAbsent: [(AmberProjectStandardExporter new) packageName: packageName; yourself]
-!
-
-packageRegistry
-	"AmberProjectImporter packageRegistry"
-
-	packageRegistry ifNil: [ packageRegistry := Dictionary new ].
-	^packageRegistry
-!
-
-registerPackage: packageName type: type prefix: prefix
-
-	self packageRegistry at: packageName put: ((AmberProjectExporter exporterFor: type asString) packageName: packageName; prefix: prefix; yourself)
-!
-
-resetRegistry
-
-	packageRegistry := nil
 ! !
 
