@@ -95,7 +95,7 @@ packageRegistry
 
 registerPackage: packageName type: type prefix: prefix
 	"AmberProjectExporter 
-		registerPackage: 'Cypress-Exporter' 
+		registerPackage: 'Cypress-ExportImport' 
 		type: 'st' 
 		prefix: 'server/projects/amber-cypress/'
 	"
@@ -227,7 +227,8 @@ getJs: ajaxUrl onSuccess: successBlock
 			'async' -> false.
 			'dataType' -> 'script'.
     			'complete' -> [:jqXHR :textStatus | 
-			jqXHR readyState = 4 ifTrue: [ successBlock value  ]]
+				jqXHR readyState = 4 ifTrue: [ successBlock value  ]].
+			'error' -> [window alert: 'getJs request failed at:  ', ajaxUrl]
 		}
 !
 
@@ -241,7 +242,8 @@ getSt: ajaxUrl onSuccess: successBlock
     			'complete' -> [:jqXHR :textStatus | 
 			jqXHR readyState = 4 ifTrue: [
 				Importer new import: jqXHR responseText readStream.
-				successBlock value  ]]
+				successBlock value  ]].
+			'error' -> [window alert: 'getSt request failed at:  ', ajaxUrl]
 		}
 !
 
