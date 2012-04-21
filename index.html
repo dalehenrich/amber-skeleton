@@ -11,6 +11,10 @@
         ready: function() {
           $(function() {
             smalltalk.Browser._open();
+            smalltalk.AmberProjectImporter._registerPackage_at_(
+              'AmberProjectImporter',
+              'server/projects/importer/'
+              );
             smalltalk.AmberProjectImporter._importSTPackages_prefix_(
               [ 
                 'Cypress-Definitions',
@@ -18,7 +22,7 @@
                 'Cypress-Mocks',
                 'Cypress-Tests'
               ],
-              'server/projects/amber-cypress/st/');
+              'server/projects/amber-cypress/');
           });
         }}) </script>
   </body> 
