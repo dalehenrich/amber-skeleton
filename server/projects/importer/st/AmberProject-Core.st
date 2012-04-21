@@ -95,6 +95,7 @@ packageRegistry
 
 registerPackage: packageName type: type prefix: prefix
 
+Transcript cr; show: 'registered ', packageName printString, ' as ', type asString.
 	self packageRegistry at: packageName put: ((self exporterFor: type asString) packageName: packageName; prefix: prefix; yourself)
 !
 
@@ -216,8 +217,14 @@ get: type url: ajaxUrl onSuccess: successBlock
 getJs: ajaxUrl onSuccess: successBlock
 
 	jQuery 
-		getScript: ajaxUrl
-		onSuccess: successBlock
+		ajax: ajaxUrl
+        	options: #{
+			'type' -> 'GET'.
+			'async' -> false.
+			'dataType' -> 'script'.
+    			'complete' -> [:jqXHR :textStatus | 
+			jqXHR readyState = 4 ifTrue: [ successBlock value  ]]
+		}
 !
 
 getSt: ajaxUrl onSuccess: successBlock
@@ -226,8 +233,9 @@ getSt: ajaxUrl onSuccess: successBlock
 		ajax: ajaxUrl
         	options: #{
 			'type' -> 'GET'.
+			'async' -> false.
     			'complete' -> [:jqXHR :textStatus | 
-			jqXHR readyState = 4 ifTrue: [ | chunks |
+			jqXHR readyState = 4 ifTrue: [
 				Importer new import: jqXHR responseText readStream.
 				successBlock value  ]]
 		}
@@ -236,19 +244,25 @@ getSt: ajaxUrl onSuccess: successBlock
 import: type subDir: packageSubDir packages: packageNameList extension: extension prefix: prefix
 
 	| loadBlock |
+Transcript cr; show: 'ENTER import: ', prefix.
 	loadBlock := [:index | | packageName next |
 		packageName := packageNameList at: index.
+Transcript cr; show: 'import CALL ', packageName.
 		self 
 			get: type
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
+Transcript cr; show: 'imported ', packageName.
 				Package init: packageName.
 				AmberProjectExporter registerPackage: packageName type: type prefix:prefix.
 				next := index + 1.
 				next <= packageNameList size
-					ifTrue: [ loadBlock value: next ]]].
+					ifTrue: [ loadBlock value: next ].
+Transcript cr; show: 'import DONE ', packageName.
+]].
 	packageNameList size >= 1 
-		ifTrue: [ loadBlock value: 1 ]
+		ifTrue: [ loadBlock value: 1 ].
+Transcript cr; show: 'EXIT import: ', prefix.
 ! !
 
 !Browser methodsFor: '*AmberProject-Core'!

@@ -204,12 +204,13 @@ selector: unescape('registerPackage%3Atype%3Aprefix%3A'),
 category: 'registry',
 fn: function (packageName, type, prefix){
 var self=this;
+(function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send(smalltalk.send(smalltalk.send("registered ", "__comma", [smalltalk.send(packageName, "_printString", [])]), "__comma", [" as "]), "__comma", [smalltalk.send(type, "_asString", [])])]);})((smalltalk.Transcript || Transcript));
 smalltalk.send(smalltalk.send(self, "_packageRegistry", []), "_at_put_", [packageName, (function($rec){smalltalk.send($rec, "_packageName_", [packageName]);smalltalk.send($rec, "_prefix_", [prefix]);return smalltalk.send($rec, "_yourself", []);})(smalltalk.send(self, "_exporterFor_", [smalltalk.send(type, "_asString", [])]))]);
 return self;},
 args: ["packageName", "type", "prefix"],
-source: unescape('registerPackage%3A%20packageName%20type%3A%20type%20prefix%3A%20prefix%0A%0A%09self%20packageRegistry%20at%3A%20packageName%20put%3A%20%28%28self%20exporterFor%3A%20type%20asString%29%20packageName%3A%20packageName%3B%20prefix%3A%20prefix%3B%20yourself%29'),
-messageSends: ["at:put:", "packageRegistry", "packageName:", "prefix:", "yourself", "exporterFor:", "asString"],
-referencedClasses: []
+source: unescape('registerPackage%3A%20packageName%20type%3A%20type%20prefix%3A%20prefix%0A%0ATranscript%20cr%3B%20show%3A%20%27registered%20%27%2C%20packageName%20printString%2C%20%27%20as%20%27%2C%20type%20asString.%0A%09self%20packageRegistry%20at%3A%20packageName%20put%3A%20%28%28self%20exporterFor%3A%20type%20asString%29%20packageName%3A%20packageName%3B%20prefix%3A%20prefix%3B%20yourself%29'),
+messageSends: ["cr", "show:", unescape("%2C"), "printString", "asString", "at:put:", "packageRegistry", "packageName:", "prefix:", "yourself", "exporterFor:"],
+referencedClasses: ["Transcript"]
 }),
 smalltalk.AmberProjectExporter.klass);
 
@@ -314,11 +315,11 @@ selector: unescape('getJs%3AonSuccess%3A'),
 category: 'private',
 fn: function (ajaxUrl, successBlock){
 var self=this;
-smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_getScript_onSuccess_", [ajaxUrl, successBlock]);
+smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_ajax_options_", [ajaxUrl, smalltalk.HashedCollection._fromPairs_([smalltalk.send("type", "__minus_gt", ["GET"]),smalltalk.send("async", "__minus_gt", [false]),smalltalk.send("dataType", "__minus_gt", ["script"]),smalltalk.send("complete", "__minus_gt", [(function(jqXHR, textStatus){return ((($receiver = smalltalk.send(smalltalk.send(jqXHR, "_readyState", []), "__eq", [(4)])).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(successBlock, "_value", []);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(successBlock, "_value", []);})]));})])])]);
 return self;},
 args: ["ajaxUrl", "successBlock"],
-source: unescape('getJs%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09getScript%3A%20ajaxUrl%0A%09%09onSuccess%3A%20successBlock'),
-messageSends: ["getScript:onSuccess:"],
+source: unescape('getJs%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09ajax%3A%20ajaxUrl%0A%20%20%20%20%20%20%20%20%09options%3A%20%23%7B%0A%09%09%09%27type%27%20-%3E%20%27GET%27.%0A%09%09%09%27async%27%20-%3E%20false.%0A%09%09%09%27dataType%27%20-%3E%20%27script%27.%0A%20%20%20%20%09%09%09%27complete%27%20-%3E%20%5B%3AjqXHR%20%3AtextStatus%20%7C%20%0A%09%09%09jqXHR%20readyState%20%3D%204%20ifTrue%3A%20%5B%20successBlock%20value%20%20%5D%5D%0A%09%09%7D'),
+messageSends: ["ajax:options:", unescape("-%3E"), "ifTrue:", unescape("%3D"), "readyState", "value"],
 referencedClasses: []
 }),
 smalltalk.AmberProjectImporter.klass);
@@ -330,12 +331,10 @@ selector: unescape('getSt%3AonSuccess%3A'),
 category: 'private',
 fn: function (ajaxUrl, successBlock){
 var self=this;
-smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_ajax_options_", [ajaxUrl, smalltalk.HashedCollection._fromPairs_([smalltalk.send("type", "__minus_gt", ["GET"]),smalltalk.send("complete", "__minus_gt", [(function(jqXHR, textStatus){return ((($receiver = smalltalk.send(smalltalk.send(jqXHR, "_readyState", []), "__eq", [(4)])).klass === smalltalk.Boolean) ? ($receiver ? (function(){var chunks=nil;
-smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){var chunks=nil;
-smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})]));})])])]);
+smalltalk.send((typeof jQuery == 'undefined' ? nil : jQuery), "_ajax_options_", [ajaxUrl, smalltalk.HashedCollection._fromPairs_([smalltalk.send("type", "__minus_gt", ["GET"]),smalltalk.send("async", "__minus_gt", [false]),smalltalk.send("complete", "__minus_gt", [(function(jqXHR, textStatus){return ((($receiver = smalltalk.send(smalltalk.send(jqXHR, "_readyState", []), "__eq", [(4)])).klass === smalltalk.Boolean) ? ($receiver ? (function(){smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){smalltalk.send(smalltalk.send((smalltalk.Importer || Importer), "_new", []), "_import_", [smalltalk.send(smalltalk.send(jqXHR, "_responseText", []), "_readStream", [])]);return smalltalk.send(successBlock, "_value", []);})]));})])])]);
 return self;},
 args: ["ajaxUrl", "successBlock"],
-source: unescape('getSt%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09ajax%3A%20ajaxUrl%0A%20%20%20%20%20%20%20%20%09options%3A%20%23%7B%0A%09%09%09%27type%27%20-%3E%20%27GET%27.%0A%20%20%20%20%09%09%09%27complete%27%20-%3E%20%5B%3AjqXHR%20%3AtextStatus%20%7C%20%0A%09%09%09jqXHR%20readyState%20%3D%204%20ifTrue%3A%20%5B%20%7C%20chunks%20%7C%0A%09%09%09%09Importer%20new%20import%3A%20jqXHR%20responseText%20readStream.%0A%09%09%09%09successBlock%20value%20%20%5D%5D%0A%09%09%7D'),
+source: unescape('getSt%3A%20ajaxUrl%20onSuccess%3A%20successBlock%0A%0A%09jQuery%20%0A%09%09ajax%3A%20ajaxUrl%0A%20%20%20%20%20%20%20%20%09options%3A%20%23%7B%0A%09%09%09%27type%27%20-%3E%20%27GET%27.%0A%09%09%09%27async%27%20-%3E%20false.%0A%20%20%20%20%09%09%09%27complete%27%20-%3E%20%5B%3AjqXHR%20%3AtextStatus%20%7C%20%0A%09%09%09jqXHR%20readyState%20%3D%204%20ifTrue%3A%20%5B%0A%09%09%09%09Importer%20new%20import%3A%20jqXHR%20responseText%20readStream.%0A%09%09%09%09successBlock%20value%20%20%5D%5D%0A%09%09%7D'),
 messageSends: ["ajax:options:", unescape("-%3E"), "ifTrue:", unescape("%3D"), "readyState", "import:", "new", "readStream", "responseText", "value"],
 referencedClasses: ["Importer"]
 }),
@@ -349,15 +348,17 @@ category: 'private',
 fn: function (type, packageSubDir, packageNameList, extension, prefix){
 var self=this;
 var loadBlock=nil;
+(function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send("ENTER import: ", "__comma", [prefix])]);})((smalltalk.Transcript || Transcript));
 (loadBlock=(function(index){var packageName=nil;
 var next=nil;
-(packageName=smalltalk.send(packageNameList, "_at_", [index]));return smalltalk.send(self, "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_registerPackage_type_prefix_", [packageName, type, prefix]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));return ((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));})]);}));
+(packageName=smalltalk.send(packageNameList, "_at_", [index]));(function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send("import CALL ", "__comma", [packageName])]);})((smalltalk.Transcript || Transcript));return smalltalk.send(self, "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){(function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send("imported ", "__comma", [packageName])]);})((smalltalk.Transcript || Transcript));smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_registerPackage_type_prefix_", [packageName, type, prefix]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));return (function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send("import DONE ", "__comma", [packageName])]);})((smalltalk.Transcript || Transcript));})]);}));
 ((($receiver = ((($receiver = smalltalk.send(packageNameList, "_size", [])).klass === smalltalk.Number) ? $receiver >=(1) : smalltalk.send($receiver, "__gt_eq", [(1)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})]));
+(function($rec){smalltalk.send($rec, "_cr", []);return smalltalk.send($rec, "_show_", [smalltalk.send("EXIT import: ", "__comma", [prefix])]);})((smalltalk.Transcript || Transcript));
 return self;},
 args: ["type", "packageSubDir", "packageNameList", "extension", "prefix"],
-source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0A%09%09self%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09AmberProjectExporter%20registerPackage%3A%20packageName%20type%3A%20type%20prefix%3Aprefix.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D%0A'),
-messageSends: ["at:", "get:url:onSuccess:", unescape("%2C"), "init:", "registerPackage:type:prefix:", unescape("+"), "ifTrue:", unescape("%3C%3D"), "size", "value:", unescape("%3E%3D")],
-referencedClasses: ["Package", "AmberProjectExporter"]
+source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0ATranscript%20cr%3B%20show%3A%20%27ENTER%20import%3A%20%27%2C%20prefix.%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0ATranscript%20cr%3B%20show%3A%20%27import%20CALL%20%27%2C%20packageName.%0A%09%09self%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0ATranscript%20cr%3B%20show%3A%20%27imported%20%27%2C%20packageName.%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09AmberProjectExporter%20registerPackage%3A%20packageName%20type%3A%20type%20prefix%3Aprefix.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D.%0ATranscript%20cr%3B%20show%3A%20%27import%20DONE%20%27%2C%20packageName.%0A%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D.%0ATranscript%20cr%3B%20show%3A%20%27EXIT%20import%3A%20%27%2C%20prefix.%0A%0A'),
+messageSends: ["cr", "show:", unescape("%2C"), "at:", "get:url:onSuccess:", "init:", "registerPackage:type:prefix:", unescape("+"), "ifTrue:", unescape("%3C%3D"), "size", "value:", unescape("%3E%3D")],
+referencedClasses: ["Transcript", "Package", "AmberProjectExporter"]
 }),
 smalltalk.AmberProjectImporter.klass);
 

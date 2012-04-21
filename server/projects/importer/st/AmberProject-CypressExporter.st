@@ -15,7 +15,7 @@ exportPackageStructure
 	stream := StringStream on: String new.
 	packageStructure writeJsonOn: stream.
 	self 
-		ajaxPutAt: self prefix, 'packages/' 
+		ajaxPutAt: self prefix, 'packages/', self packageName, '.json'
 		data: stream contents
 ! !
 
@@ -23,6 +23,7 @@ exportPackageStructure
 
 initialize
 
+Transcript cr; show: 'Cypress Exporter initialized'.
 	(AmberProjectExporter exporters)
 		 at: 'cypress' put: self
 ! !
