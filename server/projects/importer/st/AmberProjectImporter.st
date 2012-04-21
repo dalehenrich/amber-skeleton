@@ -6,8 +6,94 @@ Browser subclass: #AmberProjectBrowser
 !AmberProjectBrowser methodsFor: 'actions'!
 
 commitPackage
-	selectedPackage ifNotNil: [
+	selectedPackage ifNotNil: [ | exporter |
+		exporter := AmberProjectImporter exporterForPackage: selectedPackage.
 	]
+! !
+
+Object subclass: #AmberProjectExporter
+	instanceVariableNames: 'packageName prefix'
+	package: 'AmberProjectImporter'!
+
+!AmberProjectExporter methodsFor: 'accessing'!
+
+packageName
+
+	^packageName
+!
+
+packageName: aString
+
+	packageName := aString
+!
+
+prefix
+
+	prefix ifNil: [ prefix := '' ].
+	^prefix
+!
+
+prefix: aString
+
+	prefix := aString
+! !
+
+!AmberProjectExporter methodsFor: 'exporting'!
+
+export
+
+	self subclassResponsibility
+! !
+
+!AmberProjectExporter methodsFor: 'printing'!
+
+printString
+
+	^super printString, '(', self prefix, ' : ', self packageName, ')'
+! !
+
+!AmberProjectExporter methodsFor: 'private'!
+
+ajaxPutAt: anURL data: aString
+	jQuery 
+		ajax: anURL	options: #{	'type' -> 'PUT'.
+								'data' -> aString.
+								'contentType' -> 'text/plain;charset=UTF-8'.
+								'error' -> [window alert: 'PUT request failed at:  ', anURL] }
+! !
+
+!AmberProjectExporter class methodsFor: 'not yet classified'!
+
+for: aType
+	" #st, #js --> AmberProjectStandardExporter"
+	" #cypress --> AmberProjectCypressExporter"
+
+	aType == #cypress
+		ifTrue: [ ^AmberProjectCypressExporter new ].
+	^AmberProjectStandardExporter new
+! !
+
+AmberProjectExporter subclass: #AmberProjectCypressExporter
+	instanceVariableNames: ''
+	package: 'AmberProjectImporter'!
+
+AmberProjectExporter subclass: #AmberProjectStandardExporter
+	instanceVariableNames: ''
+	package: 'AmberProjectImporter'!
+
+!AmberProjectStandardExporter methodsFor: 'exporting'!
+
+export
+
+	| package |
+	package := Package named: self packageName.
+	{	
+		Exporter 			-> (package commitPathJs, '/', self packageName, '.js').
+		StrippedExporter 	-> (package commitPathJs, '/', self packageName, '.deploy.js').
+ 		ChunkExporter 	-> (package commitPathSt, '/', self packageName, '.st')
+	} do: [:commitStrategy| | fileContents |
+		fileContents := (commitStrategy key new exportPackage: self packageName).
+		self ajaxPutAt: commitStrategy value data:  fileContents]
 ! !
 
 Object subclass: #AmberProjectImporter
@@ -130,7 +216,7 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
 				Package init: packageName.
-				self registerPackage: packageName at: prefix.
+				self registerPackage: packageName type: type prefix:prefix, packageSubDir.
 				next := index + 1.
 				next <= packageNameList size
 					ifTrue: [ loadBlock value: next ]]].
@@ -140,6 +226,11 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 
 !AmberProjectImporter class methodsFor: 'registry'!
 
+exporterForPackage: packageName
+
+	^self packageRegistry at: packageName ifAbsent: [(AmberProjectStandardExporter new) packageName: packageName; yourself]
+!
+
 packageRegistry
 	"AmberProjectImporter packageRegistry"
 
@@ -147,14 +238,9 @@ packageRegistry
 	^packageRegistry
 !
 
-prefixForPackage: packageName
+registerPackage: packageName type: type prefix: prefix
 
-	^self packageRegistry at: packageName ifAbsent: ['']
-!
-
-registerPackage: packageName at: prefix
-
-	self packageRegistry at: packageName put: prefix
+	self packageRegistry at: packageName put: ((AmberProjectExporter for: type) packageName: packageName; prefix: prefix; yourself)
 !
 
 resetRegistry
