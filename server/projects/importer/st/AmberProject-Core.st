@@ -94,8 +94,12 @@ packageRegistry
 !
 
 registerPackage: packageName type: type prefix: prefix
+	"AmberProjectExporter 
+		registerPackage: 'Cypress-Exporter' 
+		type: 'st' 
+		prefix: 'server/projects/amber-cypress/'
+	"
 
-Transcript cr; show: 'registered ', packageName printString, ' as ', type asString.
 	self packageRegistry at: packageName put: ((self exporterFor: type asString) packageName: packageName; prefix: prefix; yourself)
 !
 
@@ -244,25 +248,19 @@ getSt: ajaxUrl onSuccess: successBlock
 import: type subDir: packageSubDir packages: packageNameList extension: extension prefix: prefix
 
 	| loadBlock |
-Transcript cr; show: 'ENTER import: ', prefix.
 	loadBlock := [:index | | packageName next |
 		packageName := packageNameList at: index.
-Transcript cr; show: 'import CALL ', packageName.
 		self 
 			get: type
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
-Transcript cr; show: 'imported ', packageName.
 				Package init: packageName.
 				AmberProjectExporter registerPackage: packageName type: type prefix:prefix.
 				next := index + 1.
 				next <= packageNameList size
-					ifTrue: [ loadBlock value: next ].
-Transcript cr; show: 'import DONE ', packageName.
-]].
+					ifTrue: [ loadBlock value: next ]]].
 	packageNameList size >= 1 
-		ifTrue: [ loadBlock value: 1 ].
-Transcript cr; show: 'EXIT import: ', prefix.
+		ifTrue: [ loadBlock value: 1 ]
 ! !
 
 !Browser methodsFor: '*AmberProject-Core'!
