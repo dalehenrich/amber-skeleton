@@ -120,7 +120,6 @@ AmberProjectExporter subclass: #AmberProjectStandardExporter
 !AmberProjectStandardExporter methodsFor: 'exporting'!
 
 export
-
 	| package |
 	package := Package named: self packageName.
 	{	
