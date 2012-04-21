@@ -94,9 +94,9 @@ export
 	| package |
 	package := Package named: self packageName.
 	{	
-		Exporter 			-> (package commitPathJs, '/', self packageName, '.js').
-		StrippedExporter 	-> (package commitPathJs, '/', self packageName, '.deploy.js').
- 		ChunkExporter 	-> (package commitPathSt, '/', self packageName, '.st')
+		Exporter 			-> (self prefix, '/js/', self packageName, '.js').
+		StrippedExporter 	-> (self prefix, '/js/', self packageName, '.deploy.js').
+ 		ChunkExporter 	-> (self prefix, '/st/', self packageName, '.st')
 	} do: [:commitStrategy| | fileContents |
 		fileContents := (commitStrategy key new exportPackage: self packageName).
 		self ajaxPutAt: commitStrategy value data:  fileContents]
