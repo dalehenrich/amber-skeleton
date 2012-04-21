@@ -23,6 +23,6 @@ export
 initialize
 
 	(AmberProjectExporter exporters)
-		 at: #cypress put: self
+		 at: 'cypress' put: self
 ! !
 

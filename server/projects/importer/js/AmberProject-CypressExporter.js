@@ -27,10 +27,10 @@ selector: unescape('initialize'),
 category: 'initialization',
 fn: function (){
 var self=this;
-smalltalk.send(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporters", []), "_at_put_", [smalltalk.symbolFor("cypress"), self]);
+smalltalk.send(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporters", []), "_at_put_", ["cypress", self]);
 return self;},
 args: [],
-source: unescape('initialize%0A%0A%09%28AmberProjectExporter%20exporters%29%0A%09%09%20at%3A%20%23cypress%20put%3A%20self'),
+source: unescape('initialize%0A%0A%09%28AmberProjectExporter%20exporters%29%0A%09%09%20at%3A%20%27cypress%27%20put%3A%20self'),
 messageSends: ["at:put:", "exporters"],
 referencedClasses: ["AmberProjectExporter"]
 }),

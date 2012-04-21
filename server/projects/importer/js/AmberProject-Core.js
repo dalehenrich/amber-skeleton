@@ -142,11 +142,11 @@ selector: unescape('exporterFor%3A'),
 category: 'accessing',
 fn: function (aType){
 var self=this;
-return smalltalk.send(smalltalk.send(self, "_exporters", []), "_at_ifAbsent_", [aType, (function(){return smalltalk.send((smalltalk.AmberProjectStandardExporter || AmberProjectStandardExporter), "_new", []);})]);
+return smalltalk.send(smalltalk.send(smalltalk.send(self, "_exporters", []), "_at_ifAbsent_", [aType, (function(){return (smalltalk.AmberProjectStandardExporter || AmberProjectStandardExporter);})]), "_new", []);
 return self;},
 args: ["aType"],
-source: unescape('exporterFor%3A%20aType%0A%0A%09%5Eself%20exporters%20at%3A%20aType%20ifAbsent%3A%20%5B%20AmberProjectStandardExporter%20new%20%5D'),
-messageSends: ["at:ifAbsent:", "exporters", "new"],
+source: unescape('exporterFor%3A%20aType%0A%0A%09%5E%28self%20exporters%20at%3A%20aType%20ifAbsent%3A%20%5B%20AmberProjectStandardExporter%20%5D%29%20new'),
+messageSends: ["new", "at:ifAbsent:", "exporters"],
 referencedClasses: ["AmberProjectStandardExporter"]
 }),
 smalltalk.AmberProjectExporter.klass);
@@ -162,7 +162,7 @@ var self=this;
 return self['@exporters'];
 return self;},
 args: [],
-source: unescape('exporters%0A%0A%09exporters%20ifNil%3A%5B%20exporters%20%3A%3D%20Dictionary%20new%20%5D.%0A%09%5Eexporters'),
+source: unescape('exporters%0A%09%22AmberProjectExporter%20exporters%22%0A%0A%09exporters%20ifNil%3A%5B%20exporters%20%3A%3D%20Dictionary%20new%20%5D.%0A%09%5Eexporters'),
 messageSends: ["ifNil:", "new"],
 referencedClasses: ["Dictionary"]
 }),
@@ -213,10 +213,10 @@ selector: unescape('initialize'),
 category: 'initialization',
 fn: function (){
 var self=this;
-(function($rec){smalltalk.send($rec, "_at_put_", [smalltalk.symbolFor("st"), self]);return smalltalk.send($rec, "_at_put_", [smalltalk.symbolFor("js"), self]);})(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporters", []));
+(function($rec){smalltalk.send($rec, "_at_put_", ["st", self]);return smalltalk.send($rec, "_at_put_", ["js", self]);})(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporters", []));
 return self;},
 args: [],
-source: unescape('initialize%0A%0A%09%28AmberProjectExporter%20exporters%29%0A%09%09%20at%3A%20%23st%20put%3A%20self%3B%0A%09%09at%3A%20%23js%20put%3A%20self'),
+source: unescape('initialize%0A%0A%09%28AmberProjectExporter%20exporters%29%0A%09%09at%3A%20%27st%27%20put%3A%20self%3B%0A%09%09at%3A%20%27js%27%20put%3A%20self'),
 messageSends: ["at:put:", "exporters"],
 referencedClasses: ["AmberProjectExporter"]
 }),
@@ -306,11 +306,11 @@ var self=this;
 var loadBlock=nil;
 (loadBlock=(function(index){var packageName=nil;
 var next=nil;
-(packageName=smalltalk.send(packageNameList, "_at_", [index]));return smalltalk.send(self, "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send(self, "_registerPackage_type_prefix_", [packageName, type, smalltalk.send(prefix, "__comma", [packageSubDir])]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));return ((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));})]);}));
+(packageName=smalltalk.send(packageNameList, "_at_", [index]));return smalltalk.send(self, "_get_url_onSuccess_", [type, smalltalk.send(smalltalk.send(smalltalk.send(prefix, "__comma", [packageSubDir]), "__comma", [packageName]), "__comma", [extension]), (function(){smalltalk.send((smalltalk.Package || Package), "_init_", [packageName]);smalltalk.send(self, "_registerPackage_type_prefix_", [packageName, type, prefix]);(next=((($receiver = index).klass === smalltalk.Number) ? $receiver +(1) : smalltalk.send($receiver, "__plus", [(1)])));return ((($receiver = ((($receiver = next).klass === smalltalk.Number) ? $receiver <=smalltalk.send(packageNameList, "_size", []) : smalltalk.send($receiver, "__lt_eq", [smalltalk.send(packageNameList, "_size", [])]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [next]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [next]);})]));})]);}));
 ((($receiver = ((($receiver = smalltalk.send(packageNameList, "_size", [])).klass === smalltalk.Number) ? $receiver >=(1) : smalltalk.send($receiver, "__gt_eq", [(1)]))).klass === smalltalk.Boolean) ? ($receiver ? (function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})() : nil) : smalltalk.send($receiver, "_ifTrue_", [(function(){return smalltalk.send(loadBlock, "_value_", [(1)]);})]));
 return self;},
 args: ["type", "packageSubDir", "packageNameList", "extension", "prefix"],
-source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0A%09%09self%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09self%20registerPackage%3A%20packageName%20type%3A%20type%20prefix%3Aprefix%2C%20packageSubDir.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D%0A'),
+source: unescape('import%3A%20type%20subDir%3A%20packageSubDir%20packages%3A%20packageNameList%20extension%3A%20extension%20prefix%3A%20prefix%0A%0A%09%7C%20loadBlock%20%7C%0A%09loadBlock%20%3A%3D%20%5B%3Aindex%20%7C%20%7C%20packageName%20next%20%7C%0A%09%09packageName%20%3A%3D%20packageNameList%20at%3A%20index.%0A%09%09self%20%0A%09%09%09get%3A%20type%0A%09%09%09url%3A%20%28prefix%2C%20packageSubDir%2C%20packageName%2C%20extension%29%20%0A%09%09%09onSuccess%3A%20%5B%20%0A%09%09%09%09Package%20init%3A%20packageName.%0A%09%09%09%09self%20registerPackage%3A%20packageName%20type%3A%20type%20prefix%3Aprefix.%0A%09%09%09%09next%20%3A%3D%20index%20+%201.%0A%09%09%09%09next%20%3C%3D%20packageNameList%20size%0A%09%09%09%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%20next%20%5D%5D%5D.%0A%09packageNameList%20size%20%3E%3D%201%20%0A%09%09ifTrue%3A%20%5B%20loadBlock%20value%3A%201%20%5D%0A'),
 messageSends: ["at:", "get:url:onSuccess:", unescape("%2C"), "init:", "registerPackage:type:prefix:", unescape("+"), "ifTrue:", unescape("%3C%3D"), "size", "value:", unescape("%3E%3D")],
 referencedClasses: ["Package"]
 }),
@@ -404,11 +404,11 @@ selector: unescape('registerPackage%3Atype%3Aprefix%3A'),
 category: 'registry',
 fn: function (packageName, type, prefix){
 var self=this;
-smalltalk.send(smalltalk.send(self, "_packageRegistry", []), "_at_put_", [packageName, (function($rec){smalltalk.send($rec, "_packageName_", [packageName]);smalltalk.send($rec, "_prefix_", [prefix]);return smalltalk.send($rec, "_yourself", []);})(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporterFor_", [type]))]);
+smalltalk.send(smalltalk.send(self, "_packageRegistry", []), "_at_put_", [packageName, (function($rec){smalltalk.send($rec, "_packageName_", [packageName]);smalltalk.send($rec, "_prefix_", [prefix]);return smalltalk.send($rec, "_yourself", []);})(smalltalk.send((smalltalk.AmberProjectExporter || AmberProjectExporter), "_exporterFor_", [smalltalk.send(type, "_asString", [])]))]);
 return self;},
 args: ["packageName", "type", "prefix"],
-source: unescape('registerPackage%3A%20packageName%20type%3A%20type%20prefix%3A%20prefix%0A%0A%09self%20packageRegistry%20at%3A%20packageName%20put%3A%20%28%28AmberProjectExporter%20exporterFor%3A%20type%29%20packageName%3A%20packageName%3B%20prefix%3A%20prefix%3B%20yourself%29'),
-messageSends: ["at:put:", "packageRegistry", "packageName:", "prefix:", "yourself", "exporterFor:"],
+source: unescape('registerPackage%3A%20packageName%20type%3A%20type%20prefix%3A%20prefix%0A%0A%09self%20packageRegistry%20at%3A%20packageName%20put%3A%20%28%28AmberProjectExporter%20exporterFor%3A%20type%20asString%29%20packageName%3A%20packageName%3B%20prefix%3A%20prefix%3B%20yourself%29'),
+messageSends: ["at:put:", "packageRegistry", "packageName:", "prefix:", "yourself", "exporterFor:", "asString"],
 referencedClasses: ["AmberProjectExporter"]
 }),
 smalltalk.AmberProjectImporter.klass);

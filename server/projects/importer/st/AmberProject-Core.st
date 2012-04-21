@@ -68,10 +68,11 @@ AmberProjectExporter class instanceVariableNames: 'exporters'!
 
 exporterFor: aType
 
-	^self exporters at: aType ifAbsent: [ AmberProjectStandardExporter new ]
+	^(self exporters at: aType ifAbsent: [ AmberProjectStandardExporter ]) new
 !
 
 exporters
+	"AmberProjectExporter exporters"
 
 	exporters ifNil:[ exporters := Dictionary new ].
 	^exporters
@@ -106,8 +107,8 @@ export
 initialize
 
 	(AmberProjectExporter exporters)
-		 at: #st put: self;
-		at: #js put: self
+		at: 'st' put: self;
+		at: 'js' put: self
 ! !
 
 Object subclass: #AmberProjectImporter
@@ -230,7 +231,7 @@ import: type subDir: packageSubDir packages: packageNameList extension: extensio
 			url: (prefix, packageSubDir, packageName, extension) 
 			onSuccess: [ 
 				Package init: packageName.
-				self registerPackage: packageName type: type prefix:prefix, packageSubDir.
+				self registerPackage: packageName type: type prefix:prefix.
 				next := index + 1.
 				next <= packageNameList size
 					ifTrue: [ loadBlock value: next ]]].
@@ -254,7 +255,7 @@ packageRegistry
 
 registerPackage: packageName type: type prefix: prefix
 
-	self packageRegistry at: packageName put: ((AmberProjectExporter exporterFor: type) packageName: packageName; prefix: prefix; yourself)
+	self packageRegistry at: packageName put: ((AmberProjectExporter exporterFor: type asString) packageName: packageName; prefix: prefix; yourself)
 !
 
 resetRegistry
