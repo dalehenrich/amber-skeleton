@@ -5,15 +5,16 @@
   <body>
     <script type='text/javascript'> loadAmber({
         packages: [
-          'AmberProjectImporter.js'
+          'AmberProject-Core.js'
           ],
         packageHome: 'server/projects/importer/',
         ready: function() {
           $(function() {
             smalltalk.Browser._open();
-            smalltalk.AmberProjectImporter._registerPackage_at_(
-              'AmberProjectImporter',
-              'server/projects/importer/'
+            smalltalk.AmberProjectImporter._registerPackage_type_prefix_(
+               'AmberProject-Core',
+               'js',
+               'server/projects/importer/'
               );
             smalltalk.AmberProjectImporter._importStPackages_prefix_(
               [ 
@@ -23,6 +24,12 @@
                 'Cypress-Tests'
               ],
               'server/projects/amber-cypress/');
+            smalltalk.AmberProjectImporter._importJsPackages_prefix_(
+              [ 
+                'AmberProject-CypressExporter'
+              ],
+              'server/projects/importer/');
+
           });
         }}) </script>
   </body> 
