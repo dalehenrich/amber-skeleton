@@ -34,7 +34,7 @@ AmberServer singleton port: 4002.
 "initialize Amber server"
 AmberOneClick 
   pngPath: 'images/amber.png';
-  prepareImage
+  prepareImage: CypressAmberServerControl
 !
 "save image as amberServer"
 SmalltalkImage current saveAs: 'AmberServer.image'.

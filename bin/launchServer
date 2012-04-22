@@ -8,16 +8,5 @@
 ROOT=`dirname $0`
 cd $ROOT/../server/pharo
 
-OS=`uname`
-echo $OS
-case  $OS in
-  Darwin*)
-    VM="/Users/dhenrich/Pharo/CogVM.app/Contents/MacOS/CogVM";;
-  Linux*)
-    VM="/export/foos1/users/dhenrich/pharo/cog/coglinux/bin/squeak";;
-esac
-
-echo $VM
-
-$VM $1 $2
+$AMBER_PHARO_VM $1 $2
 

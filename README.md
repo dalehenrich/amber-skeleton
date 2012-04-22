@@ -1,13 +1,26 @@
-#Amber Project
+#Amber Skeleton
 
-**WARNING:** still a work in progress ...
+**Amber Skeleton** is a template project for creating your own [Amber-based][1] projects.
 
-Skeleton for Amber projects. The **server** directory is
-intended to house a Pharo image. There's an install script that takes a
-standard Pharo image and turns it into an Amber file server.
+## Features
 
-I'll probably use git submodules for Amber and the supporting code for
-both Amber and the Pharo file server.
+### Link to Amber using `git submodule`
 
-The idea is that you'd clone this project and then use it for each of
-your own Amber projects.
+By using `git submodules` to link to Amber,
+you no longer need to [fork and include the entire Amber source tree][2] as
+part of your own project.
+
+See [Working with submodules][3] for more information about using submodules.
+
+### Easily load code from other Amber-based projects
+
+### Share code with other Smalltalk dialects
+
+### Manage Pharo-based server code in same project as Amber code
+
+## Installation
+
+
+[1]: https://github.com/NicolasPetton/amber
+[2]: https://github.com/NicolasPetton/amber/wiki/Writing-my-first-app
+[3]: http://help.github.com/submodules/

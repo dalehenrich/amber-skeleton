@@ -4,6 +4,6 @@ AmberServer singleton amberPath: '../..'.
 AmberServer singleton port: 4002.
 !
 "refresh Amber GUI"
-AmberOneClick prepareImage.
+AmberOneClick prepareImage: CypressAmberServerControl.
 !
 
