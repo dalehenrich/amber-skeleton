@@ -1,4 +1,4 @@
-#Amber Skeleton projects directory
+#Amber Skeleton `projects` directory
 
 This is where you include `git submodule` references to your dependent
 projects.

@@ -1,4 +1,4 @@
-#Amber Skeleton projects directory
+#Amber Skeleton `packages` directory
 
 This is where you save your source in [Cypress package format][1].
 

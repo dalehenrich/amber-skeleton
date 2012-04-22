@@ -27,7 +27,9 @@ Gofer new
         package: 'Cypress-AmberFileServer';
         load.
 !
-"set up the standard amberPath and port"
+"set up the standard amberPath and port. Change the <amberPath> only if
+you change the location of the `server/pharo` directory with respect to
+the root of Amber Skeleton project."
 AmberServer singleton amberPath: '../..'.
 AmberServer singleton port: 4002.
 !

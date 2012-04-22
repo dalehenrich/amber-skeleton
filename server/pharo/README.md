@@ -1,33 +1,24 @@
-###Setup
+#Pharo Amber File Server
 
-Download and copy the **image**, **changes**, and **sources** files for PharoCore1.3
-into this directory.
+##Installation
 
-At the moment, Pharo1.4 hits an emergency evaluator ... I haven't characterized the problem, yet.
+ 1. Download and copy the **image**, **changes**, and **sources** files for PharoCore1.3
+into this directory. *At the moment, Pharo1.4 hits an emergency evaluator ... I haven't 
+characterized the problem, yet.*
 
-###Prepare image
+ 2. Execute `../../bin/makeAmberServer` to install the Amber File Server support code into a Pharo image.
+    The script saves the image as `AmberServer.image`.
 
-Now would be a good time to bring up the image and set the window size
-to your preference and then save the image. 
+ 3. Execute `../../bin/amberServer &` to launch the Amber File Server image. 
 
-### Initialize submodules
+ 4. Change the port (4002 by default).
+   
+ 5. Press the `Start server` button to start the Amber File Server process.
 
-Before building the Amber server image, you need to make sure that the
-`git submodules` are initialized:
+ 6. Bring up Amber on `http://localhost:4002` and start development.
 
+## Install Scripts
 
-```shell
-git submodule init
-git submodule update
-```
- 
-###Build Amber server image
-
-Execute the `../../bin/makeAmberServer &` script to install the code necessary
-to turn a Pharo image into an Amber server.
-
-###Run Amber server
-
-Execute the `../../bin/amberServer &` and then bring up Amber on
-`http://localhost:4001`.
-
+You can edit the install script in the
+`server/pharo/st/installAmberServer.st` file if you would like to
+customize any aspect of the File Server image.
