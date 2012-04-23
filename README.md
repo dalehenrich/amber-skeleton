@@ -115,6 +115,12 @@ Right now there is only one issue of note:
 
   * [Slow initial load][13]
 
+## Laurent Laffont's Amber 0.9.1 OneClick
+
+The bulk of the work for the Amber File Server is based on the [Amber 0.9.1 OneClick][15] done 
+by [Laurent Laffont][14].
+
+
 [1]: https://github.com/NicolasPetton/amber
 [2]: https://github.com/NicolasPetton/amber/wiki/Writing-my-first-app
 [3]: http://help.github.com/submodules/
@@ -128,3 +134,5 @@ Right now there is only one issue of note:
 [11]: https://github.com/dalehenrich/amber-skeleton/fork_select
 [12]: https://github.com/blog/128-let-there-be-renaming
 [13]: https://github.com/dalehenrich/amber-skeleton/issues/1
+[14]: https://github.com/lolgzs
+[15]: http://forum.world.st/ANN-Amber-0-9-1-OneClick-td4378569.html
