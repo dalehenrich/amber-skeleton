@@ -120,6 +120,19 @@ Right now there is only one issue of note:
 The bulk of the work for the Amber File Server is based on the [Amber 0.9.1 OneClick][15] done 
 by [Laurent Laffont][14].
 
+## Project Dependencies
+
+**Amber projects**:
+
+ * [Amber][16]
+ * [amber-cypress][17]
+
+**Pharo projects**:
+
+ * [Cypress][18]
+ * [Pharo][21]
+ * [amber-server][19]
+ * [Filetree][20]
 
 [1]: https://github.com/NicolasPetton/amber
 [2]: https://github.com/NicolasPetton/amber/wiki/Writing-my-first-app
@@ -136,3 +149,10 @@ by [Laurent Laffont][14].
 [13]: https://github.com/dalehenrich/amber-skeleton/issues/1
 [14]: https://github.com/lolgzs
 [15]: http://forum.world.st/ANN-Amber-0-9-1-OneClick-td4378569.html
+[16]: https://github.com/NicolasPetton/amber
+[17]: https://github.com/CampSmalltalk/amber-cypress
+
+[18]: https://github.com/CampSmalltalk/Cypress
+[19]: https://github.com/dalehenrich/amber-server
+[20]: https://github.com/dalehenrich/filetree
+[21]: http://www.pharo-project.org/home
