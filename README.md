@@ -100,12 +100,14 @@ To start working with your own **Amber Skeleton** project:
      to this immediately after cloning. See [Git Submodules: Adding,
      Using, Removing, Updating][4] for more information about using
      submodules.
-  4. `init and update` the `git submodules:
+  5. `init and update` the `git submodules:
 
-```shell
-    git submodule init
-    git submodule update
-```
+    ```shell
+        git submodule init
+        git submodule update
+    ```
+    
+  6. Build your Amber File server. See the README in the `server/pharo` directory.
 
 [1]: https://github.com/NicolasPetton/amber
 [2]: https://github.com/NicolasPetton/amber/wiki/Writing-my-first-app
