@@ -6,6 +6,8 @@
 into this directory. *At the moment, Pharo1.4 hits an emergency evaluator ... I haven't 
 characterized the problem, yet.*
 
+ 2. Define the shell variable `$AMBER_PHARO_VM` to point to the Pharo vm executable. 
+
  2. Execute `../../bin/makeAmberServer` to install the Amber File Server support code into a Pharo image.
     The script saves the image as `AmberServer.image`.
 
