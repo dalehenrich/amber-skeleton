@@ -90,7 +90,7 @@ This project is a perfect example. In particular look at the `index.html` file f
 To start working with your own **Amber Skeleton** project:
 
   1. [Fork the Amber Skeleton][11] project.
-  2. [Rename the forked project] to the name you want the project to
+  2. [Rename the forked project][12] to the name you want the project to
      have. *Note that you might want to have a personal fork of the 
      Amber Skeleton project so you can customize the project for your
      own needs.*
