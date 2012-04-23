@@ -2,11 +2,12 @@
 
 ##Installation
 
- 1. Download and copy the **image**, **changes**, and **sources** files for PharoCore1.3
+ 1. Download and copy the **image**, **changes**, and **sources** files for [PharoCore1.3][3]
 into this directory. *At the moment, Pharo1.4 hits an emergency evaluator ... I haven't 
 characterized the problem, yet.*
 
- 2. Define the shell variable `$AMBER_PHARO_VM` to point to the Pharo vm executable. 
+ 2. Define the shell variable `$AMBER_PHARO_VM` to point to the [Pharo vm executable for your platform
+(see **Virtual Machines** section at bottom of page)][4]. 
 
  2. Execute `../../bin/makeAmberServer` to install the Amber File Server support code into a Pharo image.
     The script saves the image as `AmberServer.image`.
@@ -32,3 +33,5 @@ by [Laurent Laffont][1].
 
 [1]: https://github.com/lolgzs
 [2]: http://forum.world.st/ANN-Amber-0-9-1-OneClick-td4378569.html
+[3]: http://www.pharo-project.org/pharo-download/release-1-3
+[4]: http://www.pharo-project.org/pharo-download
