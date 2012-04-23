@@ -22,3 +22,11 @@ characterized the problem, yet.*
 You can edit the install script in the
 `server/pharo/st/installAmberServer.st` file if you would like to
 customize any aspect of the File Server image.
+
+## Laurent Laffont's Amber 0.9.1 OneClick
+
+The bulk of the work for the Amber File Server is based on the [Amber 0.9.1 OneClick][2] done 
+by [Laurent Laffont][1].
+
+[1]: https://github.com/lolgzs
+[2]: http://forum.world.st/ANN-Amber-0-9-1-OneClick-td4378569.html
