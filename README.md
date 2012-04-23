@@ -81,9 +81,9 @@ CypressAmberImporter
 other dialects - Amber is the first `non-Monticello` dialect I've worked
 with), so I'll be interested in your results:).*
 
-### Manage Pharo-based server code in same project as Amber code
+## Examples
 
-This project is a perfect example.
+This project is a perfect example. In particular look at the `index.html` file for examples of loading code using the **AmberProjectImporter** class.
 
 ## Installation
 
