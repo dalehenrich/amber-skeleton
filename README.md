@@ -109,6 +109,12 @@ To start working with your own **Amber Skeleton** project:
     
   6. Build your Amber File server. See the README in the `server/pharo` directory.
 
+## Known Issues
+
+Right now there is only one issue of note:
+
+  * [Slow initial load][13]
+
 [1]: https://github.com/NicolasPetton/amber
 [2]: https://github.com/NicolasPetton/amber/wiki/Writing-my-first-app
 [3]: http://help.github.com/submodules/
@@ -121,3 +127,4 @@ To start working with your own **Amber Skeleton** project:
 [10]: https://github.com/CampSmalltalk/STIG
 [11]: https://github.com/dalehenrich/amber-skeleton/fork_select
 [12]: https://github.com/blog/128-let-there-be-renaming
+[13]: https://github.com/dalehenrich/amber-skeleton/issues/1
